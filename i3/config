@@ -154,12 +154,20 @@ bindsym $mod+r mode "resize"
 bar {
         status_command ~/.config/i3/i3status_sherwyn.sh
         tray_output primary
-        font pango: Inconsolata 10
+        font pango: Inconsolata 9
+        colors {
+            statusline #4DD8F2
+            background #202020
+        }
 }
 
 ### SHERWYN'S COMMANDS ###
+# disable focus follows mouse
+focus_follows_mouse no
+
 # take a screenshot
 bindsym $mod+semicolon exec shutter -s
+bindsym Print exec shutter -s
 
 # move current window to a neighboring workspace
 bindsym $mod+Shift+bracketleft move container to workspace prev
@@ -169,8 +177,22 @@ bindsym $mod+Shift+bracketright move container to workspace next
 bindsym $mod+bracketleft workspace prev
 bindsym $mod+bracketright workspace next
 
+# change the screen brightness
+# reduce
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20
+
+# increase
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20
+
+
 # change the pc volume
+# mute
+bindsym $mod+/ exec amixer -D pulse set Master 1+ toggle
+bindsym XF86AudioMute exec amixer -D pulse set Master 1+ toggle
+
 # reduce
 bindsym $mod+comma exec amixer -D pulse sset Master 5%-
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
 # increase
 bindsym $mod+period exec amixer -D pulse sset Master 5%+
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+

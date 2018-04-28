@@ -187,7 +187,7 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 20
 
 # change the pc volume
 # mute
-bindsym $mod+/ exec amixer -D pulse set Master 1+ toggle
+bindsym $mod+slash exec amixer -D pulse set Master 1+ toggle
 bindsym XF86AudioMute exec amixer -D pulse set Master 1+ toggle
 
 # reduce

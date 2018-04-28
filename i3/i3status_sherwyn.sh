@@ -12,8 +12,8 @@ do
     read line
     
     # input method
-    im="$(qdbus org.fcitx.Fcitx /inputmethod GetCurrentIM)"
-    
+    im="$(~/.config/i3/get_input_method.sh)"
+
     # memory usage
     free_kb="$(cat /proc/meminfo | grep MemFree | awk -F ' ' '{print $2}')"
     total_kb="$(cat /proc/meminfo | grep MemTotal | awk -F ' ' '{print $2}')"

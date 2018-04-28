@@ -10,7 +10,10 @@ i3status | while :
 do
     # i3status
     read line
-    
+   
+    # dropbox status
+    dropbox="$(dropbox status | head -n 1)"
+
     # input method
     im="$(~/.config/i3/get_input_method.sh)"
 
@@ -25,5 +28,5 @@ do
     total_gb=$return
 
     # final output
-    echo "入力: $im | メモリー: $used_gb GiB/$total_gb GiB | $line"
+    echo "箱: $dropbox | 入力: $im | メモリー: $used_gb GiB/$total_gb GiB | $line"
 done

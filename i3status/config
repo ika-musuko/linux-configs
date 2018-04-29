@@ -53,7 +53,7 @@ run_watch VPN {
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M:%S"
+        format = "%A %Y-%m-%d %H:%M:%S"
 }
 
 load {
@@ -61,11 +61,11 @@ load {
 }
 
 disk "/" {
-        format = "/: %avail/%total"
+        format = "/: %used/%total"
 }
 
 disk "/home" {
-        format = "/home: %avail/%total"
+        format = "/home: %used/%total"
 }
 volume master {
         format = "音: %volume"

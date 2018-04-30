@@ -15,23 +15,28 @@ do
     dropbox_status="$(dropbox status)"
     db_lines=$(echo "$dropbox_status" | wc -l)
     unix_time="$(date +'%s')"
-    current_line=$(($unix_time%$db_lines+1))
+    current_line=$(($unix_time/2%$db_lines+1))
 
     dropbox="$(echo "$dropbox_status" | sed -n ${current_line}p)"
 
     # input method
     im="$(~/.config/i3/get_input_method.sh)"
 
-    # memory usage
-    free_kb="$(cat /proc/meminfo | grep MemFree | awk -F ' ' '{print $2}')"
-    total_kb="$(cat /proc/meminfo | grep MemTotal | awk -F ' ' '{print $2}')"
-    used_kb="$(expr $total_kb - $free_kb)"
+    # memory usage (linux memory works differently than windows so this actually isn't very useful)
+    #free_kb="$(cat /proc/meminfo | grep MemFree | awk -F ' ' '{print $2}')"
+    #total_kb="$(cat /proc/meminfo | grep MemTotal | awk -F ' ' '{print $2}')"
+    #used_kb="$(expr $total_kb - $free_kb)"
     
-    float_divide $used_kb 1000000
-    used_gb=$return
-    float_divide $total_kb 1000000
-    total_gb=$return
+    #float_divide $used_kb 1000000
+    #used_gb=$return
+    #float_divide $total_kb 1000000
+    #total_gb=$return
+
+    # weather
+    weather=$(ansiweather -l Hayward,US -s true -a false -w false -h false -p false -d false | awk -F '=> ' ' { print $NF } ')
+    
 
     # final output
-    echo "箱: $dropbox | 入力: $im | メモリー: $used_gb GiB/$total_gb GiB | $line"
+    #echo "箱: $dropbox | 入力: $im | メモリー: $used_gb GiB/$total_gb GiB | $line"
+    echo "i箱: $dropbox | 天気 $weather | 入力: $im | $line"
 done

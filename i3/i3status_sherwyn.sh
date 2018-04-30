@@ -38,5 +38,5 @@ do
 
     # final output
     #echo "箱: $dropbox | 入力: $im | メモリー: $used_gb GiB/$total_gb GiB | $line"
-    echo "i箱: $dropbox | 天気 $weather | 入力: $im | $line"
+    echo "箱: $dropbox | 天気 $weather | 入力: $im | $line"
 done

@@ -12,7 +12,12 @@ do
     read line
    
     # dropbox status
-    dropbox="$(dropbox status | head -n 1)"
+    dropbox_status="$(dropbox status)"
+    db_lines=$(echo "$dropbox_status" | wc -l)
+    unix_time="$(date +'%s')"
+    current_line=$(($unix_time%$db_lines+1))
+
+    dropbox="$(echo "$dropbox_status" | sed -n ${current_line}p)"
 
     # input method
     im="$(~/.config/i3/get_input_method.sh)"

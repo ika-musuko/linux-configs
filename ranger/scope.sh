@@ -72,6 +72,7 @@ esac
 case "$mimetype" in
     # Syntax highlight for text files:
     text/* | */xml)
+        try cat  "$path" && { dump | trim; exit 5; } || exit 2;;
         try highlight --out-format=ansi "$path" && { dump | trim; exit 5; } || exit 2;;
     # Ascii-previews of images:
     image/*)

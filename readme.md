@@ -1,7 +1,7 @@
-since i use multiple computers and i don't want to redo all of my i3 settings every time i use a different computer i made this repo.
+backup repo for my linux configs (formerly just for i3)
 
-just replace the i3 and i3status folders in ~/.config with these
+i use multiple computers so i don't want to redo my configs every time i figure out something on one computer
 
-dependencies: dropbox ansiweather
+dependencies: ansiweather
 
 download ansiweather from the github repo https://github.com/fcambus/ansiweather/blob/master/ansiweather

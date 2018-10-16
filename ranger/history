@@ -1,0 +1,17 @@
+find nom
+open_with 
+open_with v
+open_with vim
+shell X %s
+find h
+find vid
+find Desk
+search rave of the jacks 2_.mptm
+open_with openmpt_test
+sort size
+delete
+find 
+shell mkv 
+shell mpv
+open_with
+open_with mupdf

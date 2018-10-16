@@ -33,10 +33,11 @@ do
     #total_gb=$return
 
     # weather
-    weather=$(ansiweather -l Hayward,US -s true -a false -w false -h false -p false -d false | awk -F '=> ' ' { print $NF } ')
-    
+    #weather=$(ansiweather -l Hayward,US -s true -a false -w false -h false -p false -d true | awk -F '=> ' ' { print $NF } ')
+    weather=$(ansiweather -l Hayward,US -s true -a false -w false -h false -p false -d true)
 
     # final output
     #echo "箱: $dropbox | 入力: $im | メモリー: $used_gb GiB/$total_gb GiB | $line"
-    echo "箱: $dropbox | 天気 $weather | 入力: $im | $line"
+    #echo "箱: $dropbox | 天気 $weather | 入力: $im | $line"
+    echo "天気 $weather | 入力: $im | $line"
 done

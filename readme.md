@@ -5,3 +5,6 @@ i use multiple computers so i don't want to redo my configs every time i figure 
 dependencies: ansiweather
 
 download ansiweather from the github repo https://github.com/fcambus/ansiweather/blob/master/ansiweather
+
+startup: 
+link the files preceding with . to home directory

@@ -20,7 +20,7 @@ order += "disk /home"
 #order += "run_watch VPN"
 order += "wireless _first_"
 order += "ethernet _first_"
-order += "battery 0"
+#order += "battery 0"
 order += "volume master"
 order += "tztime local"
 
@@ -41,7 +41,7 @@ battery 0 {
 
 cpu_temperature 0 {
     format = "温度: %degrees °C"
-    path = "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input"
+    path = "/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input"
 }
 
 run_watch DHCP {

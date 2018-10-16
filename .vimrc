@@ -18,9 +18,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
-" ale linter
-Plugin 'w0rp/ale'
-
 " bulleting
 Plugin 'dkarter/bullets.vim'
 
@@ -32,6 +29,9 @@ Plugin 'tpope/vim-surround'
 
 " . repeat support for plugins
 Plugin 'tpope/vim-repeat'
+
+" table mode
+Plugin 'dhruvasagar/vim-table-mode'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

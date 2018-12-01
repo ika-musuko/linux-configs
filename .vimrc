@@ -31,6 +31,7 @@ Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'scrooloose/nerdtree'
 Plugin 'KabbAmine/vCoolor.vim'
 Plugin 'lilydjwg/fcitx.vim'
+Plugin 'rhysd/clever-f.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -53,6 +54,8 @@ autocmd VimLeave * call system("xsel -ib", getreg('+'))
 
 """"" PLUGIN SPECIFIC VIMRC """""
 map <C-n> :NERDTreeToggle<CR>
+map ; <Plug>(clever-f-repeat-forward)
+map , <Plug>(clever-f-repeat-back)
 
 """"" CUSTOM COMMANDS """""
 "automatically generate a groff doc from current buffer

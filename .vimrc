@@ -1,3 +1,4 @@
+""""" VUNDLE """""
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -45,34 +46,29 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-
-
-" Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
-
 autocmd VimLeave * call system("xsel -ib", getreg('+'))
 
-"plugin specific vimrc
+""""" PLUGIN SPECIFIC VIMRC """""
 map <C-n> :NERDTreeToggle<CR>
 
-"commands
+""""" CUSTOM COMMANDS """""
 "automatically generate a groff doc from current buffer
 command Doc ! groff -ms % -T pdf > %:r.pdf
 
-"standard vimrc from here
+""""" STANDARD VIMRC """""
+" Source a global configuration file if available
+
 filetype plugin indent on
 
-set showcmd		" Show (partial) command in status line.
+syntax enable
+set showcmd         " see command as it's being typed
 set showmatch		" Show matching brackets.
 set ignorecase		" Do case insensitive matching
 set smartcase		" Do smart case matching
-set hlsearch
-"set incsearch		" Incremental search
-"set autowrite		" Automatically save before commands like :next and :make
-"set hidden		" Hide buffers when they are abandoned
-set mouse=r		" Enable mouse usage (all modes)
+set hlsearch        " highlight searches
 set fileencodings=utf8
 set autoindent
 set tabstop=4
@@ -83,6 +79,7 @@ set number
 set relativenumber
 set clipboard=unnamedplus
 set ttimeoutlen=100 " less esc key lag
+set background=dark
 
 "easier split navigation
 nnoremap <C-J> <C-W><C-J>
@@ -97,13 +94,5 @@ set splitright
 "enable 256-color
 set t_Co=256
 
-" see command as it's being typed
-set showcmd
-
 " spellcheck color
 hi SpellBad ctermfg=015 ctermbg=001 cterm=none guifg=#FFFFFF guibg=#FF0000 gui=none
-
-
-syntax enable
-set background=dark
-

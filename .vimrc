@@ -1,4 +1,3 @@
-"vundle
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -13,25 +12,24 @@ Plugin 'VundleVim/Vundle.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
-
-" airline status bar
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
-" bulleting
-Plugin 'dkarter/bullets.vim'
-
-" fcitx management
-Plugin 'vim-scripts/fcitx.vim'
-
-" surround support
-Plugin 'tpope/vim-surround'
-
-" . repeat support for plugins
-Plugin 'tpope/vim-repeat'
-
-" table mode
+" plugin on GitHub repo
+"Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+"Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
 Plugin 'dhruvasagar/vim-table-mode'
+Plugin 'scrooloose/nerdtree'
+Plugin 'KabbAmine/vCoolor.vim'
+Plugin 'lilydjwg/fcitx.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -48,18 +46,43 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-"vimrc
+
+" Source a global configuration file if available
+if filereadable("/etc/vim/vimrc.local")
+  source /etc/vim/vimrc.local
+endif
+
+autocmd VimLeave * call system("xsel -ib", getreg('+'))
+
+"plugin specific vimrc
+map <C-n> :NERDTreeToggle<CR>
+
+"commands
+"automatically generate a groff doc from current buffer
+command Doc ! groff -ms % -T pdf > %:r.pdf
+
+"standard vimrc from here
 filetype plugin indent on
+
+set showcmd		" Show (partial) command in status line.
+set showmatch		" Show matching brackets.
+set ignorecase		" Do case insensitive matching
+set smartcase		" Do smart case matching
+set hlsearch
+"set incsearch		" Incremental search
+"set autowrite		" Automatically save before commands like :next and :make
+"set hidden		" Hide buffers when they are abandoned
+set mouse=r		" Enable mouse usage (all modes)
 set fileencodings=utf8
 set autoindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set clipboard=unnamedplus
-
-"set relative line numbers
-set relativenumber
+set ls=2            " always show status line
 set number
+set relativenumber
+set clipboard=unnamedplus
+set ttimeoutlen=100 " less esc key lag
 
 "easier split navigation
 nnoremap <C-J> <C-W><C-J>
@@ -77,6 +100,10 @@ set t_Co=256
 " see command as it's being typed
 set showcmd
 
-" mouse support 
-set mouse=a
+" spellcheck color
+hi SpellBad ctermfg=015 ctermbg=001 cterm=none guifg=#FFFFFF guibg=#FF0000 gui=none
+
+
+syntax enable
+set background=dark
 

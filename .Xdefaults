@@ -1,0 +1,96 @@
+! perl scripts
+URxvt.perl-ext-common:	resize-font,keyboard-select
+URxvt.keysym.C-Escape: perl:keyboard-select:activate
+URxvt.keyboard-select.clipboard: true
+
+! font
+URxvt.font: xft:Ricty-Regular:pixelsize=14
+Rxvt.lineSpace: 0
+!
+! Xft settings ---------------------------------------------------------
+Xft.autohint:   0
+Xft.dpi:        256
+Xft.antialias:  true
+Xft.rgba:       rgba
+Xft.hinting:    true
+Xft.hintstyle:  hintsdark
+Xft.lcdfilter:  lcddefault
+
+URxvt*scrollBar_floating: false
+URxvt*scrollBar_right:    true
+URxvt*scrollstyle:        plain
+
+!! resize-font
+URxvt.resize-font.smaller:	C-Down
+URxvt.resize-font.bigger:	C-Up
+
+Xcursor.size:  16       !  32, 48 or 64 may also be good values
+
+urxvt*termName: rxvt
+!
+! to match gnome-terminal "Linux console" scheme
+! foreground/background
+URxvt*background: #000000
+URxvt*foreground: #ffffff
+! black
+URxvt.color0  : #000000
+URxvt.color8  : #555555
+! red
+URxvt.color1  : #AA0000
+URxvt.color9  : #FF5555
+! green
+URxvt.color2  : #00AA00
+URxvt.color10 : #55FF55
+! yellow
+URxvt.color3  : #AA5500
+URxvt.color11 : #FFFF55
+! blue
+URxvt.color4  : #0000AA
+URxvt.color12 : #5555FF
+! magenta
+URxvt.color5  : #AA00AA
+URxvt.color13 : #FF55FF
+! cyan
+URxvt.color6  : #00AAAA
+URxvt.color14 : #55FFFF
+! white
+URxvt.color7  : #AAAAAA
+URxvt.color15 : #FFFFFF
+
+/*! special
+*.foreground:   #c2cddc
+*.background:   #0b0f13
+*.cursorColor:  #00ff33
+
+! black
+*.color0:       #a18e6b
+*.color8:       #a18e6b
+
+! red
+*.color1:       #a08b64
+*.color9:       #a08b64
+
+! green
+*.color2:       #55be89
+*.color10:      #55be89
+
+! yellow
+*.color3:       #6bc37e
+*.color11:      #6bc37e
+
+! blue
+*.color4:       #b9a379
+*.color12:      #b9a379
+
+! magenta
+*.color5:       #a966b0
+*.color13:      #a966b0
+
+! cyan
+*.color6:       #b852c2
+*.color14:      #b852c2
+
+! white
+*.color7:       #6992bc
+*.color15:      #6992bc
+*/

@@ -1,17 +1,50 @@
-find nom
+rename 05_synchronization.pdf
+rename fast_physics_using_emscripten.pdf
+search en
+search Docum
+search 05
+search cs116a
+rename cs116a
+! ./rename_project matrix-rotations
+shell ./rename_project.sh matrix-rotations
+search ra
+shell vim rifle.conf
+search 01
+search cs
+cd 
+cd ranger
+cd .config
+search ranger
+rename scope.sh
+cd Pictures/
+cd .config/
+find rang
+filter kk
+search cd .
+cd  .config
+
+search pill
+q
+search m
 open_with 
-open_with v
-open_with vim
-shell X %s
-find h
-find vid
-find Desk
-search rave of the jacks 2_.mptm
-open_with openmpt_test
-sort size
+shell mkdir flasktest
+vim routes.py
+shell vim routes.py
+search l
+shell mkdir templates
+mv imgs_ imgs
+m
+! mv imgs_ imgs
+shell mv imgs_ imgs
+search CL
+search Pic
+delete imgs
+search 
+rename bovenzi.cpp
+rename chen.cpp
 delete
-find 
-shell mkv 
-shell mpv
-open_with
-open_with mupdf
+rename chenye.cpp
+search lab5
+shell 
+rename cs149-hw1-forktest
+compress

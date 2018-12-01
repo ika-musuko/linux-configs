@@ -8,6 +8,8 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
@@ -16,17 +18,22 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# set PATH so it includes user's private bin directories
-PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-export PG_OF_PATH=/home/sherwyn/of
-
-# 256 color shell
-if [ -e /usr/share/terminfo/x/xterm-256color ]; then
-    export TERM='xterm-256color'
-else
-    export TERM='xterm-color'
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
 fi
 
-# remap caps to super
-setxkbmap -option caps:super
+# Nodejs
+export NODEJS_HOME=/.npm-global/bin
+export PATH=$NODEJS_HOME:$PATH
 
+export PG_OF_PATH=/home/sherwyn/of
+
+# 256 color terminal
+if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+        export TERM='xterm-256color'
+else
+        export TERM='xterm-color'
+fi
+
+setxkbmap -option caps:super 

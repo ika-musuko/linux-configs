@@ -1,0 +1,50 @@
+{
+    "url":"https://github.com/ika-musuko/linux-configs.git",
+    "readme":"README.md",
+    "entities" : [
+        { 
+            "i" : "~/.bashrc",
+            "o" : ".bashrc" 
+        },
+        {
+            "i" : "~/.profile",
+            "o" : ".profile" 
+        },
+        {
+            "i" : "~/.tmux.conf",
+            "o" : ".tmux.conf" 
+        },
+        {
+            "i" : "~/.ideavimrc",
+            "o" : ".ideavimrc" 
+        },
+        {
+            "i" : "~/.urxvt",
+            "o" : ".urxvt"
+        },
+        {
+            "i" : "~/.vimrc",
+            "o" : ".vimrc" 
+        },
+        {
+            "i" : "~/.Xdefaults",
+            "o" : ".Xdefaults" 
+        },
+        {
+            "i" : "~/.i3",
+            "o" : ".i3" 
+        },
+        {
+            "i" : "~/.config/i3",
+            "o" : "i3" 
+        },
+        {
+            "i" : "~/.config/i3status",
+            "o" : "i3status" 
+        },
+        {
+            "i" : "~/.config/ranger",
+            "o" : "ranger" 
+        }
+    ]
+}

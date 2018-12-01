@@ -36,8 +36,10 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
+TERM="screen-256color"
+export TERM
 case "$TERM" in
-    xterm|xterm-color|*-256color) color_prompt=yes;;
+    rxvt-unicode|rxvt-unicode-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -45,9 +47,33 @@ esac
 # should be on the output of commands, not on the prompt
 #force_color_prompt=yes
 
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
+    else
+	color_prompt=
+    fi
+fi
+
+if [ "$color_prompt" = yes ]; then
+    if [[ ${EUID} == 0 ]] ; then
+        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \W ($[\033[01;31m\](git branch 2>/dev/null | grep '^*' | colrm 1 2)\) $\[\033[00m\] '
+    else
+        #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w $(git branch 2>/dev/null | grep '^*' | colrm 1 2)\$\[\033[00m\] '
+        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[01;33m\]@\[\033[01;39m\]\h \[\033[01;34m\]\w \[\033[01;33m\]$(git branch 2>/dev/null | grep '^*' | colrm 1 2)\[\033[01;35m\]\$\[\033[00m\] '
+    fi
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h \w \$ '
+fi
+unset color_prompt force_color_prompt
+
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
+    #PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h \w\a\]$PS1"
     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h \w\a\]$PS1"
     ;;
 *)
@@ -102,144 +128,46 @@ if [ -x /usr/bin/mint-fortune ]; then
      /usr/bin/mint-fortune
 fi
 
-export BLOG_SITE=/home/sherwyn/Dropbox/school/spr2018/infosec/blog_site
+export NODE=/home/sherwyn/.node/node-v11.3.0-linux-x64/bin
+export PATH=$NODE:$PATH
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR="/home/sherwyn/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# git show branch name
-force_color_prompt=yes
-color_prompt=yes
-# get current branch in git repo
-function parse_git_branch() {
-	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-	if [ ! "${BRANCH}" == "" ]
-	then
-		STAT=`parse_git_dirty`
-		echo "[${BRANCH}${STAT}]"
-	else
-		echo ""
-	fi
+
+export SCHOOL=~/Dropbox/school/
+export SCHESS=$SCHOOL/spr2018/soft_eng2/SuicideChess
+export INFOSEC=$SCHOOL/spr2017/infosec
+export PROJ3=~/Dropbox/school/spr2018/parallel/proj3
+export BLOG_SITE=$INFOSEC/blog_site
+export VIV_CONFIG=/opt/vivaldi/resources/vivaldi/style
+export BIPEDAL=~/cs116a/bipedal/cs116a-hw3-bipedal
+#export PS1="\\w:\$(git branch 2>/dev/null | grep '^*' | colrm 1 2)\$ "
+
+export OF_ROOT=~/of
+
+# clip alias for copying from terminal output
+alias clip='xclip -sel clip'
+
+# cd alias shortcuts
+alias clion-proj='cd CLionProjects/'
+
+# quick google search
+function argv {
+    for a in ${BASH_ARGV[*]} ; do
+      echo -n "$a "
+    done
+    echo
 }
 
-# get current status of git repo
-function parse_git_dirty {
-	status=`git status 2>&1 | tee`
-	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
-	untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
-	ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
-	newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
-	renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
-	deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
-	bits=''
-	if [ "${renamed}" == "0" ]; then
-		bits=">${bits}"
-	fi
-	if [ "${ahead}" == "0" ]; then
-		bits="*${bits}"
-	fi
-	if [ "${newfile}" == "0" ]; then
-		bits="+${bits}"
-	fi
-	if [ "${untracked}" == "0" ]; then
-		bits="?${bits}"
-	fi
-	if [ "${deleted}" == "0" ]; then
-		bits="x${bits}"
-	fi
-	if [ "${dirty}" == "0" ]; then
-		bits="!${bits}"
-	fi
-	if [ ! "${bits}" == "" ]; then
-		echo " ${bits}"
-	else
-		echo ""
-	fi
+function google {
+    surf https://www.google.com/search?q=$1
 }
 
-# theme
-# Everyone needs a little color in their lives
-RED='\[\033[31m\]'
-GREEN='\[\033[32m\]'
-YELLOW='\[\033[33m\]'
-BLUE='\[\033[34m\]'
-PURPLE='\[\033[35m\]'
-CYAN='\[\033[36m\]'
-WHITE='\[\033[37m\]'
-NIL='\[\033[00m\]'
+alias vimhelp='cat ~/vimhelp'
+FILE_EXTENSION_LOWER="$(echo ${FILE_EXTENSION} | tr '[A-Z]' '[a-z]')"
 
-# Hostname styles
-FULL='\H'
-SHORT='\h'
+# pwd writer for same directory new terminal
+export PROMPT_COMMAND="pwd > /tmp/whereami"
 
-# System => color/hostname map:
-# UC: username color
-# LC: location/cwd color
-# HD: hostname display (\h vs \H)
-# Defaults:
-UC=$GREEN
-LC=$BLUE
-HD=$FULL
-
-# Prompt function because PROMPT_COMMAND is awesome
-function set_prompt() {
-    # show the host only and be done with it.
-    host="${UC}${HD}${NIL}"
-
-    # Special vim-tab-like shortpath (~/folder/directory/foo => ~/f/d/foo)
-    _pwd=`pwd | sed "s#$HOME#~#"`
-    if [[ $_pwd == "~" ]]; then
-       _dirname=$_pwd
-    else
-       _dirname=`dirname "$_pwd" `
-        if [[ $_dirname == "/" ]]; then
-              _dirname=""
-        fi
-       _dirname="$_dirname/`basename "$_pwd"`"
-    fi
-    path="${LC}${_dirname}${NIL}"
-    myuser="${UC}\u@${NIL}"
-
-    # Dirtiness from:
-    # http://henrik.nyh.se/2008/12/git-dirty-prompt#comment-8325834
-    if git update-index -q --refresh 2>/dev/null; git diff-index --quiet --cached HEAD --ignore-submodules -- 2>/dev/null && git diff-files --quiet --ignore-submodules 2>/dev/null
-        then dirty=""
-    else
-       dirty="${RED}*${NIL}"
-    fi
-    _branch=$(git symbolic-ref HEAD 2>/dev/null)
-    _branch=${_branch#refs/heads/} # apparently faster than sed
-    branch="" # need this to clear it when we leave a repo
-    if [[ -n $_branch ]]; then
-       branch=" ${NIL}[${PURPLE}${_branch}${dirty}${NIL}]"
-    fi
-
-    # Dollar/pound sign
-    end="${LC}\$${NIL} "
-
-    # Virtual Env
-    if [[ $VIRTUAL_ENV != "" ]]
-       then
-           venv=" ${RED}(${VIRTUAL_ENV##*/})"
-    else
-       venv=''
-    fi
-
-    export PS1="${myuser}${path}${venv}${branch} ${end}"
-}
-
-export PROMPT_COMMAND=set_prompt
-
-# openframeworks path
-export PG_OF_PATH=/home/sherwyn/of
-
-# fuck
-eval $(thefuck --alias --enable-experimental-instant-mode)
-
-# external HDD
-alias pico='cd /media/sherwyn/pico'
-
-# new terminal
-alias n='mate-terminal'
 

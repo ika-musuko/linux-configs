@@ -1,4 +1,5 @@
-#sherwyn's linux configs
+sherwyn's linux configs
+----------------------
 
 distro: linux mint 19 + xfce  
 window manager: i3wm

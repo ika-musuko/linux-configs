@@ -32,6 +32,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'KabbAmine/vCoolor.vim'
 Plugin 'lilydjwg/fcitx.vim'
 Plugin 'rhysd/clever-f.vim'
+Plugin 'skywind3000/asyncrun.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -58,8 +59,11 @@ map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)
 
 """"" CUSTOM COMMANDS """""
-"automatically generate a groff doc from current buffer
+"automatically generate a groff doc from current buffer (requires groff)
 command Doc ! groff -ms % -T pdf > %:r.pdf
+
+"open the current doc as a sent presentation (requires https://tools.suckless.org/sent/)
+command Sent AsyncStop! | sleep 100m | AsyncRun sent %
 
 """"" STANDARD VIMRC """""
 " Source a global configuration file if available
@@ -72,6 +76,7 @@ set showmatch		" Show matching brackets.
 set ignorecase		" Do case insensitive matching
 set smartcase		" Do smart case matching
 set hlsearch        " highlight searches
+map <F11> :noh<CR>
 set fileencodings=utf8
 set autoindent
 set tabstop=4

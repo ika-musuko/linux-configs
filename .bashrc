@@ -152,18 +152,6 @@ alias clip='xclip -sel clip'
 # cd alias shortcuts
 alias clion-proj='cd CLionProjects/'
 
-# quick google search
-function argv {
-    for a in ${BASH_ARGV[*]} ; do
-      echo -n "$a "
-    done
-    echo
-}
-
-function google {
-    surf https://www.google.com/search?q=$1
-}
-
 alias vimhelp='cat ~/vimhelp'
 FILE_EXTENSION_LOWER="$(echo ${FILE_EXTENSION} | tr '[A-Z]' '[a-z]')"
 

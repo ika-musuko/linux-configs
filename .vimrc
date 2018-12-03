@@ -88,6 +88,7 @@ set relativenumber
 set clipboard=unnamedplus
 set ttimeoutlen=100 " less esc key lag
 set background=dark
+set virtualedit+=all " move cursor past end of line
 
 "easier split navigation
 nnoremap <C-J> <C-W><C-J>

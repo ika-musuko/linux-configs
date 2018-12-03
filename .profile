@@ -8,8 +8,6 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-
-
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
@@ -36,4 +34,8 @@ else
         export TERM='xterm-color'
 fi
 
+# map capslock to super key
 setxkbmap -option caps:super 
+
+export EDITOR=/usr/bin/vim
+

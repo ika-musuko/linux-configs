@@ -158,4 +158,5 @@ FILE_EXTENSION_LOWER="$(echo ${FILE_EXTENSION} | tr '[A-Z]' '[a-z]')"
 # pwd writer for same directory new terminal
 export PROMPT_COMMAND="pwd > /tmp/whereami"
 
-
+# jdbc path
+export CLASSPATH=".:/usr/share/java/mysql.jar"

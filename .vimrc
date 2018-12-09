@@ -27,6 +27,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
+Plugin 'vim-airline/vim-airline'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'scrooloose/nerdtree'
 Plugin 'KabbAmine/vCoolor.vim'
@@ -60,23 +61,22 @@ map , <Plug>(clever-f-repeat-back)
 
 """"" CUSTOM COMMANDS """""
 "automatically generate a groff doc from current buffer (requires groff)
-command Doc ! groff -ms % -T pdf > %:r.pdf
+command! Doc ! groff -ms % -T pdf > %:r.pdf
 
 "open the current doc as a sent presentation (requires https://tools.suckless.org/sent/)
-command Sent AsyncStop! | sleep 100m | AsyncRun sent %
+command! Sent AsyncStop! | sleep 100m | AsyncRun sent %
 
 """"" STANDARD VIMRC """""
 " Source a global configuration file if available
 
 filetype plugin indent on
-
+"main settings
 syntax enable
 set showcmd         " see command as it's being typed
 set showmatch		" Show matching brackets.
 set ignorecase		" Do case insensitive matching
 set smartcase		" Do smart case matching
 set hlsearch        " highlight searches
-map <F11> :noh<CR>
 set fileencodings=utf8
 set autoindent
 set tabstop=4
@@ -89,6 +89,17 @@ set clipboard=unnamedplus
 set ttimeoutlen=100 " less esc key lag
 set background=dark
 set virtualedit+=all " move cursor past end of line
+
+"vanilla custom commands
+command! -nargs=1 Tab set expandtab ts=<args> sw=<args> ai " set custom tab with (ex, :Tab 2)
+" force :W and :Q to act like lowercase counterparts
+command! W :w 
+command! Q :q
+
+"keyboard commands            
+map <leader>[ :set virtualedit=""<CR>
+map <leader>] :set virtualedit+=all<CR>
+map <F11> :noh<CR>
 
 "easier split navigation
 nnoremap <C-J> <C-W><C-J>
@@ -105,3 +116,4 @@ set t_Co=256
 
 " spellcheck color
 hi SpellBad ctermfg=015 ctermbg=001 cterm=none guifg=#FFFFFF guibg=#FF0000 gui=none
+

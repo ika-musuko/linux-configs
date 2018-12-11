@@ -34,6 +34,7 @@ Plugin 'KabbAmine/vCoolor.vim'
 Plugin 'lilydjwg/fcitx.vim'
 Plugin 'rhysd/clever-f.vim'
 Plugin 'skywind3000/asyncrun.vim'
+Plugin 'vim-scripts/DrawIt'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

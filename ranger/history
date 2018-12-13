@@ -1,8 +1,3 @@
-search 05
-search cs116a
-rename cs116a
-! ./rename_project matrix-rotations
-shell ./rename_project.sh matrix-rotations
 search ra
 shell vim rifle.conf
 search 01
@@ -48,3 +43,8 @@ compress Hw5.zip
 find 
 review.pdf
 rename review.pdf
+hiden
+hidden
+h hidden
+help hidden
+set show_hidden true

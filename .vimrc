@@ -59,6 +59,7 @@ autocmd VimLeave * call system("xsel -ib", getreg('+'))
 map <C-n> :NERDTreeToggle<CR>
 map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)
+let g:clever_f_use_migemo=1
 
 """"" CUSTOM COMMANDS """""
 "automatically generate a groff doc from current buffer (requires groff)
@@ -79,9 +80,9 @@ set ignorecase		" Do case insensitive matching
 set smartcase		" Do smart case matching
 set hlsearch        " highlight searches
 set fileencodings=utf8
-set autoindent
 set tabstop=4
 set shiftwidth=4
+set autoindent
 set expandtab
 set ls=2            " always show status line
 set number

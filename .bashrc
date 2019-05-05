@@ -160,3 +160,7 @@ export PROMPT_COMMAND="pwd > /tmp/whereami"
 
 # jdbc path
 export CLASSPATH=".:/usr/share/java/mysql.jar"
+
+# android home
+export ANDROID_HOME="/home/sherwyn/Android"
+export PATH=$PATH:/usr/lib/android-sdk/tools/bin:

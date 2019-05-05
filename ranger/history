@@ -1,19 +1,4 @@
-search ra
-shell vim rifle.conf
-search 01
-search cs
-cd 
-cd ranger
-cd .config
-search ranger
-rename scope.sh
-cd Pictures/
-cd .config/
-find rang
-filter kk
-search cd .
 cd  .config
-
 search pill
 q
 search m
@@ -27,7 +12,6 @@ mv imgs_ imgs
 m
 ! mv imgs_ imgs
 shell mv imgs_ imgs
-search CL
 search Pic
 delete imgs
 search 
@@ -38,7 +22,6 @@ rename chenye.cpp
 search lab5
 shell 
 rename cs149-hw1-forktest
-compress
 compress Hw5.zip
 find 
 review.pdf
@@ -48,3 +31,20 @@ hidden
 h hidden
 help hidden
 set show_hidden true
+open_with mpv
+open_with
+!mpv 2018-12-17
+search CL
+search CLl
+vim readme
+compress
+shell vim readme.txt
+compress Final_SherwynSen.zip
+shell caja .
+redraw_window
+rename 
+rename 01_conjurer.png
+rename 02_warrior.png
+
+rename 03_woman_carrying.png
+search Ope

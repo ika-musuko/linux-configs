@@ -35,6 +35,9 @@ Plugin 'lilydjwg/fcitx.vim'
 Plugin 'rhysd/clever-f.vim'
 Plugin 'skywind3000/asyncrun.vim'
 Plugin 'vim-scripts/DrawIt'
+Plugin 'rhysd/vim-crystal'
+Plugin 'dart-lang/dart-vim-plugin'
+Plugin 'thosakwe/vim-flutter'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -68,6 +71,16 @@ command! Doc ! groff -ms % -T pdf > %:r.pdf
 "open the current doc as a sent presentation (requires https://tools.suckless.org/sent/)
 command! Sent AsyncStop! | sleep 100m | AsyncRun sent %
 
+" Enable Flutter menu
+"call FlutterMenu()
+
+" Some of these key choices were arbitrary;
+" it's just an example.
+nnoremap <leader>fa :FlutterRun<cr>
+nnoremap <leader>fq :FlutterQuit<cr>
+nnoremap <leader>fr :FlutterHotReload<cr>
+nnoremap <leader>fR :FlutterHotRestart<cr>
+
 """"" STANDARD VIMRC """""
 " Source a global configuration file if available
 
@@ -83,6 +96,7 @@ set fileencodings=utf8
 set tabstop=4
 set shiftwidth=4
 set autoindent
+set ai
 set expandtab
 set ls=2            " always show status line
 set number
@@ -90,7 +104,6 @@ set relativenumber
 set clipboard=unnamedplus
 set ttimeoutlen=100 " less esc key lag
 set background=dark
-set virtualedit+=all " move cursor past end of line
 
 "vanilla custom commands
 command! -nargs=1 Tab set expandtab ts=<args> sw=<args> ai " set custom tab with (ex, :Tab 2)
@@ -119,3 +132,7 @@ set t_Co=256
 " spellcheck color
 hi SpellBad ctermfg=015 ctermbg=001 cterm=none guifg=#FFFFFF guibg=#FF0000 gui=none
 
+autocmd FileType crystal setlocal shiftwidth=2 tabstop=2
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType dart setlocal shiftwidth=2 tabstop=2 noai 
